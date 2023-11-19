@@ -1,0 +1,21 @@
+project:
+  name: 'CS169-fa23-29'
+  owner: 'fa23'
+  teamId: '29'
+  identities: {}
+  notifications:
+    email: 'pnpatel@berkeley.edu'
+  members:
+    member1:
+      name: 'Pooja'
+      surname: 'Patel' 
+      githubUsername: 'poojapatel185'
+    member2:
+      name: 'Jacob'
+      surname: 'Chamie' 
+      githubUsername: 'JacobChamie'
+    member3:
+      name: 'Gautam'
+      surname: 'Anand' 
+      githubUsername: 'gautamcal'
+    
