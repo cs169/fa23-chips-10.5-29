@@ -1,0 +1,10 @@
+<!-- app/views/representatives/show.html.erb -->
+
+<div class="container">
+  <h1><%= @representative.name %></h1>
+  <h2><%= @representative.title %></h2>
+  <p><strong>OCD ID:</strong> <%= @representative.ocdid %></p>
+  <p><strong>Address:</strong> <%= @representative.street %>, <%= @representative.city %>, <%= @representative.state %> <%= @representative.zip %></p>
+  <p><strong>Political Party:</strong> <%= @representative.political_party %></p>
+  <%= image_tag(@representative.photo_url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg', alt: 'Representative Photo', class: 'img-fluid') %>
+</div>
