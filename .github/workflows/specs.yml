@@ -15,7 +15,6 @@ jobs:
         os:
           - ubuntu-22.04
     steps:
-      - run: bundle exec cucumber
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
@@ -37,3 +36,4 @@ jobs:
       - run: bundle exec rake db:setup
       - run: bundle exec rake db:test:prepare
       - run: bundle exec rspec
+      - run: bundle exec cucumber
