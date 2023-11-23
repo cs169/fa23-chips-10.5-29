@@ -12,3 +12,4 @@ class SearchController < ApplicationController
 
     render 'representatives/search'
   end
+end
