@@ -56,15 +56,16 @@ exports.parseTopojson = (stateMap, topology) => {
     };
 };
 
-exports.setupEventHandlers = (stateMap) => {
-    const targets = $('.actionmap-view-region');
-    const hoverHtmlProvider = (elem) => {
-        const countyName = elem.attr('data-county-name');
-        return `${countyName}, ${stateMap.state.symbol}`;
+exports.initializeEventHandlers = (mapObject) => {
+    const cR = $('.actionmap-view-region');
+    const tooltipContent = (element) => {
+        const nameOfCounty = element.attr('data-county-name');
+        return `${nameOfCounty}, ${mapObject.state.symbol}`;
     };
-    const clickCallback = (elem) => {
-        const countyFipsCode = elem.attr('data-county-fips-code');
-        window.location.href = `/state/${stateMap.state.symbol}/county/${countyFipsCode}`;
+    const onRegionClick = (element) => {
+        const fipsCodeOfCounty = element.attr('data-county-fips-code');
+        window.location.href = `/state/${mapObject.state.symbol}/county/${fipsCodeOfCounty}`;
     };
-    mapUtils.handleMapMouseEvents(targets, hoverHtmlProvider, clickCallback);
+
+    mapUtils.handleMapMouseEvents(cR, tooltipContent, onRegionClick);
 };
