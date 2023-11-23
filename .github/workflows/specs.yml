@@ -16,10 +16,6 @@ jobs:
           - ubuntu-22.04
     steps:
       - run: bundle exec cucumber
-      - shell: bash
-              env:
-                RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }} 
-              run: touch master.key && echo "$RAILS_MASTER_KEY" > master.key
       - name: Cache multiple paths
         uses: actions/cache@v2
         with:
