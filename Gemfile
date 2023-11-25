@@ -49,8 +49,10 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
   gem 'sqlite3'
 
   # Guard Plugins
