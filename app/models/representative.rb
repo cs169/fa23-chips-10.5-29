@@ -2,7 +2,6 @@
 
 class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
-  belongs_to :county
 
   def self.civic_api_to_representative_params(rep_info)
     reps = []

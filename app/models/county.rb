@@ -2,7 +2,6 @@
 
 class County < ApplicationRecord
   belongs_to :state
-  has_many :representatives
 
   # Standardized FIPS code eg. 001 for 1.
   def std_fips_code

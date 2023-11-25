@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_25_052258) do
+ActiveRecord::Schema.define(version: 2023_11_25_063905) do
 
   create_table "counties", force: :cascade do |t|
     t.string "name", null: false
@@ -55,8 +55,6 @@ ActiveRecord::Schema.define(version: 2023_11_25_052258) do
     t.string "zip"
     t.string "political_party"
     t.string "photo_url"
-    t.integer "county_id"
-    t.index ["county_id"], name: "index_representatives_on_county_id"
   end
 
   create_table "states", force: :cascade do |t|
