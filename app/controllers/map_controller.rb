@@ -23,7 +23,10 @@ class MapController < ApplicationController
     @county = get_requested_county @state.id
     handle_county_not_found && return if @state.nil?
 
-    @representatives = @county.representatives
+    service = Google::Apis::CivicinfoV2::CivicInfoService.new
+    service.key = Rails.application.credentials[:GOOGLE_API_KEY]
+    result = service.representative_info_by_address(address: @address)
+    @representatives = Representative.civic_api_to_representative_params(result)
 
     @county_details = @state.counties.index_by(&:std_fips_code)
     render 'representatives/search'
