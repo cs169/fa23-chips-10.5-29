@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # See: https://github.com/codecov/example-ruby
-
+require 'shoulda/matchers'
 require 'simplecov'
 SimpleCov.start 'rails'
 
@@ -94,6 +94,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
