@@ -26,7 +26,7 @@ class MapController < ApplicationController
     @county_details = @state.counties.index_by(&:std_fips_code)
 
     @representatives = Representative.civic_api_to_representative_params(result)
-    render 'representatives/search'
+    #render 'representatives/search'
   end
 
   private
