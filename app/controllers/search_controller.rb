@@ -5,17 +5,17 @@ require 'google/apis/civicinfo_v2'
 class SearchController < ApplicationController
   def search
 
-    if flash[:state] && flash[:county]
-      @state = State.find_by(symbol: flash[:state])
-      @county = County.find_by(
-        state:     @state.id,
-        fips_code: flash[:county]
-      )
+    if flash[:state_symbol] && flash[:county_fips]
+      state_symbol = flash[:state_symbol]
+      county_fips = flash[:county_fips]
+    
+      @selected_state = State.find_by(symbol: state_symbol)
+      @selected_county = County.find_by(state_id: @selected_state.id, fips_code: county_fips) if @selected_state.present?
     else
-      @state = nil
-      @county = nil
+      @selected_state = @selected_county = nil
     end
     
+
     address = params[:address]
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
     service.key = Rails.application.credentials[:GOOGLE_API_KEY]
