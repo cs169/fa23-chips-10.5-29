@@ -26,6 +26,7 @@ class MapController < ApplicationController
     @county_details = @state.counties.index_by(&:std_fips_code)
 
     @representatives = @county.representatives
+    puts @representatives.inspect
     render 'representatives/search'
   end
 
