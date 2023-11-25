@@ -23,6 +23,8 @@ class MapController < ApplicationController
     @county = get_requested_county @state.id
     handle_county_not_found && return if @state.nil?
 
+    @representatives = @county.representatives
+
     @county_details = @state.counties.index_by(&:std_fips_code)
   end
 
