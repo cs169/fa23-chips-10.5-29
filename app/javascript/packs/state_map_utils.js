@@ -56,7 +56,7 @@ exports.parseTopojson = (stateMap, topology) => {
     };
 };
 
-exports.initializeEventHandlers = (mapObject) => {
+exports.setupEventHandlers = (mapObject) => {
     const cR = $('.actionmap-view-region');
     const tooltipContent = (element) => {
         const nameOfCounty = element.attr('data-county-name');
@@ -66,6 +66,5 @@ exports.initializeEventHandlers = (mapObject) => {
         const fipsCodeOfCounty = element.attr('data-county-fips-code');
         window.location.href = `/state/${mapObject.state.symbol}/county/${fipsCodeOfCounty}`;
     };
-
     mapUtils.handleMapMouseEvents(cR, tooltipContent, onRegionClick);
 };

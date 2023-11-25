@@ -23,7 +23,13 @@ class MapController < ApplicationController
     @county = get_requested_county @state.id
     handle_county_not_found && return if @state.nil?
 
-    @county_details = @state.counties.index_by(&:std_fips_code)
+    # @county_details = @state.counties.index_by(&:std_fips_code)
+
+    flash[:state] = @state.symbol
+    flash[:county] = @county.fips_code
+    redirect_to("/search?address=#{@county.name}, #{@state.symbol}")
+
+    # render 'representatives/search'
   end
 
   private
