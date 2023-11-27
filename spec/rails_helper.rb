@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 # See: https://github.com/codecov/example-ruby
-
+require 'shoulda/matchers'
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter 'lib'
+end
 
 if ENV['CI']
   require 'codecov'
@@ -95,3 +97,34 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+                                                                     provider:    'google_oauth2',
+                                                                     uid:         '123456789',
+                                                                     info:        {
+                                                                       name:  'DJ Khaled',
+                                                                       email: 'dj@khaled.com'
+                                                                     },
+                                                                     credentials: {
+                                                                       token:         'token',
+                                                                       refresh_token: 'refresh token'
+                                                                     }
+                                                                   })
+OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+                                                              provider:    'github',
+                                                              uid:         '987654321',
+                                                              info:        {
+                                                                name:  'Metro Boomin',
+                                                                email: 'metro@boomin.com'
+                                                              },
+                                                              credentials: {
+                                                                token:         'token',
+                                                                refresh_token: 'refresh token'
+                                                              }
+                                                            })
