@@ -42,7 +42,7 @@ RSpec.describe SearchController, type: :controller do
 
     context 'when state and county identifiers are not found in flash' do
       it 'does not assign state and county variables' do
-        get :search, params: { address: address }
+        get :search, params: { address: address } format: :json
         expect(assigns(:resolved_state)).to be_nil
         expect(assigns(:resolved_county)).to be_nil
       end
