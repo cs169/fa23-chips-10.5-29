@@ -14,7 +14,7 @@ class SearchController < ApplicationController
       @state = nil
       @county = nil
     end
-    
+
     address = params[:address]
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
     service.key = Rails.application.credentials[:GOOGLE_API_KEY]
