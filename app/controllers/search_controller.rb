@@ -4,16 +4,14 @@ require 'google/apis/civicinfo_v2'
 
 class SearchController < ApplicationController
   def search
-    if flash[:state_identifier] && flash[:fips_identifier]
-      located_state = State.find_by(symbol: flash[:state_identifier])
-      @resolved_state = located_state
-      @resolved_county = if located_state
-                           County.find_by(state_id:  located_state.id,
-                                          fips_code: flash[:fips_identifier])
-                         end
-    else
-      @resolved_state = @resolved_county = nil
-    end
+    @state = @county = nil
+
+    return unless flash[:state] && flash[:county]
+
+    @state = State.find_by(symbol: flash[:state])
+    return unless @state
+
+    @county = County.find_by(state: @state.id, fips_code: flash[:county])
 
     address = params[:address]
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
