@@ -40,7 +40,6 @@ RSpec.describe SearchController, type: :controller do
       end
     end
 
-
     it 'fetches representatives based on the given address' do
       # Set up the stub for CivicInfoService
       s_double = instance_double(Google::Apis::CivicinfoV2::CivicInfoService)
