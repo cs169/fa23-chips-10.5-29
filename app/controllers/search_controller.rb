@@ -13,7 +13,7 @@ class SearchController < ApplicationController
     else
       @selected_state = nil
       @selected_county = nil
-    end    
+    end
 
     address = params[:address]
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
