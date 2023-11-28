@@ -34,9 +34,6 @@ RSpec.describe SearchController, type: :controller do
         allow(Google::Apis::CivicinfoV2::CivicInfoService).to receive(:new).and_return(service_double)
         allow(service_double).to receive(:key=)
 
-        response_double = instance_double(Google::Apis::CivicinfoV2::RepresentativeInfoResponse)
-        allow(service_double).to receive(:representative_info_by_address).with(address: address).and_return(response_double)
-
         # get :search, params: { address: address }
         # expect(assigns(:state)).to eq(located_state)
         # expect(assigns(:county)).to eq(located_county)
