@@ -16,14 +16,14 @@ RSpec.describe SearchController, type: :controller do
 
     context 'when state and county identifiers are found in flash' do
       before do
-        flash[:state_identifier] = state_identifier
-        flash[:fips_identifier] = fips_identifier
+        flash[:state] = state_identifier
+        flash[:fips] = fips_identifier
 
         # Stubbing the database query for the located state and county
         located_state = instance_double(State, id: 1, symbol: state_identifier)
         located_county = instance_double(County, id: 1, state_id: located_state.id, fips_code: fips_identifier)
-        allow(State).to receive(:where).with(symbol: state_identifier).and_return([located_state])
-        allow(County).to receive(:where).with(state_id:  located_state.id,
+        allow(State).to receive(:find_by).with(symbol: state_identifier).and_return([located_state])
+        allow(County).to receive(:find_by).with(state_id:  located_state.id,
                                               fips_code: fips_identifier).and_return([located_county])
       end
 
