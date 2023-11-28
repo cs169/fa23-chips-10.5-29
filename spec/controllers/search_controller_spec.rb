@@ -22,9 +22,9 @@ RSpec.describe SearchController, type: :controller do
         # Stubbing the database query for the located state and county
         located_state = instance_double(State, id: 1, symbol: state_identifier)
         located_county = instance_double(County, id: 1, state_id: located_state.id, fips_code: fips_identifier)
-        allow(State).to receive(:find_by).with(symbol: state_identifier).and_return([located_state])
+        allow(State).to receive(:find_by).with(symbol: state_identifier).and_return(located_state)
         allow(County).to receive(:find_by).with(state_id:  located_state.id,
-                                                fips_code: fips_identifier).and_return([located_county])
+                                                fips_code: fips_identifier).and_return(located_county)
       end
 
       it 'assigns the located state and county to instance variables' do
@@ -34,7 +34,7 @@ RSpec.describe SearchController, type: :controller do
         allow(Google::Apis::CivicinfoV2::CivicInfoService).to receive(:new).and_return(service_double)
         allow(service_double).to receive(:key=)
 
-        # get :search, params: { address: address }
+        get :search, params: { address: address }
         # expect(assigns(:resolved_state)).not_to be_nil
         # expect(assigns(:resolved_county)).not_to be_nil
       end
