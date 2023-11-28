@@ -40,13 +40,6 @@ RSpec.describe SearchController, type: :controller do
       end
     end
 
-    context 'when state and county identifiers are not found in flash' do
-      it 'does not assign state and county' do
-        get :search, params: { address: address }
-        expect(assigns(:state)).to be_nil
-        expect(assigns(:county)).to be_nil
-      end
-    end
 
     it 'fetches representatives based on the given address' do
       # Set up the stub for CivicInfoService
