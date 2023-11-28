@@ -24,7 +24,7 @@ RSpec.describe SearchController, type: :controller do
         located_county = instance_double(County, id: 1, state_id: located_state.id, fips_code: fips_identifier)
         allow(State).to receive(:find_by).with(symbol: state_identifier).and_return([located_state])
         allow(County).to receive(:find_by).with(state_id:  located_state.id,
-                                              fips_code: fips_identifier).and_return([located_county])
+                                                fips_code: fips_identifier).and_return([located_county])
       end
 
       it 'assigns the located state and county to instance variables' do
