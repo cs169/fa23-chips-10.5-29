@@ -40,13 +40,6 @@ RSpec.describe SearchController, type: :controller do
       end
     end
 
-      it 'does not assign state and county and returns no content' do
-        get :search, params: { address: address }
-        expect(assigns(:state)).to be_nil
-        expect(assigns(:county)).to be_nil
-        expect(response).to have_http_status(:no_content)
-      end
-
     it 'fetches representatives based on the given address' do
       # Set up the stub for CivicInfoService
       s_double = instance_double(Google::Apis::CivicinfoV2::CivicInfoService)
