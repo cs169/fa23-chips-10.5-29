@@ -11,8 +11,8 @@ class SearchController < ApplicationController
         fips_code: flash[:county]
       )
     else
-      @selected_state = nil
-      @selected_county = nil
+      @state = nil
+      @county = nil
     end
 
     address = params[:address]
