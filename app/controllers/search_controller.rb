@@ -3,6 +3,7 @@
 require 'google/apis/civicinfo_v2'
 
 class SearchController < ApplicationController
+  def search
   if flash[:state] && flash[:county]
     @state = State.find_by(symbol: flash[:state])
     @county = County.find_by(
