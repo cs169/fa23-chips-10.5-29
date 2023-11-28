@@ -8,9 +8,10 @@ class SearchController < ApplicationController
       @selected_state = State.find_by(symbol: flash[:state])
       @selected_county = County.find_by(state: @selected_state.id, fips_code: flash[:county])
     else
-      @selected_state, @selected_county = nil, nil
+      @selected_state = nil
+      @selected_county = nil
     end
-    
+
     address = params[:address]
     service = Google::Apis::CivicinfoV2::CivicInfoService.new
     service.key = Rails.application.credentials[:GOOGLE_API_KEY]
