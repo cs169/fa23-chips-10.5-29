@@ -34,9 +34,9 @@ RSpec.describe SearchController, type: :controller do
         allow(Google::Apis::CivicinfoV2::CivicInfoService).to receive(:new).and_return(service_double)
         allow(service_double).to receive(:key=)
 
-        # get :search, params: { address: address }
-        # expect(assigns(:resolved_state)).not_to be_nil
-        # expect(assigns(:resolved_county)).not_to be_nil
+        get :search, params: { address: address }
+        expect(assigns(:state)).to eq(located_state)
+        expect(assigns(:county)).to eq(located_county)
       end
     end
 
