@@ -5,6 +5,7 @@ require 'spec_helper'
 require 'google/apis/civicinfo_v2'
 
 describe 'Representatives', type: :request do
+  include NewsItemHelper
   describe 'GET /representatives/:id' do
     before do
       address = '416 Charleville Court, Cary, NC 27519'

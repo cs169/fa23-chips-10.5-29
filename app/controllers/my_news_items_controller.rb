@@ -17,7 +17,8 @@ class MyNewsItemsController < SessionController
       redirect_to representative_news_item_path(@representative, @news_item),
                   notice: 'News item was successfully created.'
     else
-      render :new, error: 'An error occurred when creating the news item.'
+      flash.now[:error] = 'An error occurred when creating the news item.'
+      render :new
     end
   end
 
@@ -26,7 +27,8 @@ class MyNewsItemsController < SessionController
       redirect_to representative_news_item_path(@representative, @news_item),
                   notice: 'News item was successfully updated.'
     else
-      render :edit, error: 'An error occurred when updating the news item.'
+      flash.now[:error] = 'An error occurred when updating the news item.'
+      render :edit
     end
   end
 
@@ -39,9 +41,7 @@ class MyNewsItemsController < SessionController
   private
 
   def set_representative
-    @representative = Representative.find(
-      params[:representative_id]
-    )
+    @representative = Representative.find(params[:representative_id])
   end
 
   def set_representatives_list
@@ -52,8 +52,7 @@ class MyNewsItemsController < SessionController
     @news_item = NewsItem.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def news_item_params
-    params.require(:news_item).permit(:news, :title, :description, :link, :representative_id)
+    params.require(:news_item).permit(:title, :description, :link, :issue, :representative_id)
   end
 end

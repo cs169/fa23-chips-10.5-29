@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get '/my_events/:id' => 'my_events#edit', :as => :edit_my_event
     match '/my_events/:id', to: 'my_events#update', via: %i[put patch]
     match '/my_events/:id', to: 'my_events#destroy', via: [:delete]
+    resources :my_news_items
 
     # Routes for Representatives
     resources :representatives, only: [:index]

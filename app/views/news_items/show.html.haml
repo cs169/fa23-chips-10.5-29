@@ -1,41 +1,48 @@
-.row.mt-2
-    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        %h3.text-center= @news_item.title
-        .card-body
-            .card-text
-                %dl.row
-                    %dt.col-sm-3.text-md-right Link:
-                    %dt.col-sm-9
-                        %a{ href: @news_item.link }
-                            = @news_item.link
-                %dl.row
-                    %dt.col-sm-3.text-md-right Issue:
-                    %dt.col-sm-9
-                        = @news_item.issue
-                %dl.row
-                    %dt.col-sm-3.text-md-right Description:
-                    %dt.col-sm-9
-                        = @news_item.description
-                %dl.row
-                    %dt.col-sm-3.text-md-right Representative:
-                    %dt.col-sm-9
-                        %a{ href: representative_path(@representative) }
-                            = @news_item.representative.name
-                %dl.row
-                    %dt.col-sm-3.text-md-right Time Added:
-                    %dt.col-sm-9
-                        %time.timeago{ datetime: @news_item.created_at.iso8601 }
-                %dl.row
-                    %dt.col-sm-3.text-md-right Last Updated:
-                    %dt.col-sm-9
-                        %time.timeago{ datetime: @news_item.updated_at.iso8601 }
-    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        .clearfix
-            .float-right
-                = link_to representative_edit_my_news_item_path(@representative, @news_item),
-                class: 'mx-1 btn btn-primary' do
-                    %i.fas.fa-pencil
-                    Edit
-                = link_to representative_news_items_path(@representative), class: 'mx-1 btn btn-info' do
-                    %i.fas.fa-list
-                    View all articles
+.container-fluid.py-5
+    .row
+        .col-md-8.offset-md-2
+            %h1.text-center Listing News Articles for #{@representative.name}
+            .clearfix.my-4
+                .float-right
+                    = link_to representative_new_my_news_item_path(@representative), class: 'mx-1 btn btn-primary' do
+                        %i.fas.fa-plus
+                        Add News Article
+                    = link_to representatives_path, class: 'mx-1 btn btn-info' do
+                        %i.fas.fa-list
+                        All Representatives
+            .table-responsive-md
+                %table.table.table-striped.table-hover#events
+                    %caption Table of News Items for #{@representative.name}
+                    %thead.thead-dark
+                        %tr
+                            %th #
+                            %th Name
+                            %th Issue
+                            %th Description
+                            %th Posted
+                            %th{ colspan: 3 } Links
+                    %tbody
+                        - @news_items.each_with_index do |item, index|
+                            %tr
+                                %td= index + 1
+                                %td
+                                    %a{ href: item.link }
+                                        = item.title
+                                        &nbsp;
+                                        %i.fas.fa-external-link-alt
+                                %td= item.issue
+                                %td= item.description
+                                %td
+                                    %time.timeago{ datetime: item.created_at.iso8601 }
+                                %td
+                                    = link_to representative_news_item_path(item.representative.id, item.id),
+                                        class: 'btn btn-info' do
+                                        %i.fas.fa-eye &nbsp;Info
+                                %td
+                                    = link_to representative_edit_my_news_item_path(item.representative.id, item.id),
+                                        class: 'btn btn-success' do
+                                        %i.fas.fa-pen &nbsp;Edit
+                                %td
+                                    = link_to representative_news_item_path(item.representative.id, item.id),
+                                        method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+                                        %i.fas.fa-trash &nbsp;Delete
