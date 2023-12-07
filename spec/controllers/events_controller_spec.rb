@@ -8,9 +8,6 @@ RSpec.describe EventsController, type: :controller do
     @county = instance_double(County, id: 1, state_id: @state.id, fips_code: 1)
     @event = instance_double(Event, id: 1, county_id: @county.id)
   end
-  # let(:state) { instance_double(State, id: 1, symbol: 'NC')}
-  # let(:county) { instance_double(County, id: 1, state_id: @state.id, fips_code: 1) }
-  # let(:event) { instance_double(Event, id: 1, county_id: county.id) }
 
   describe 'GET #index' do
     context 'without filter' do

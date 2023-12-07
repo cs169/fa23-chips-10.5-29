@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Add more Authentication Providers here.
   enum provider: { google_oauth2: 1, github: 2 }, _prefix: :provider
 
-  # Each (uid, provider) pair should be unique.
   validates :uid, uniqueness: { scope: :provider }
 
   def name

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# spec/controllers/ajax_controller_spec.rb
 require 'rails_helper'
 
 RSpec.describe AjaxController, type: :controller do
@@ -15,7 +14,6 @@ RSpec.describe AjaxController, type: :controller do
 
       # json_response = JSON.parse(response.body)
       # expect(json_response).to be_an(Array)
-      # Assuming your State model has a `counties` association
       # expect(json_response.length).to eq(state.counties.count)
     end
 
