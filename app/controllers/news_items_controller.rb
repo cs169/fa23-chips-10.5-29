@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class NewsItemsController < ApplicationController
-  before_action :set_representative
-  before_action :set_news_item, only: %i[show]
+  before_action :set_representative, except: [:new_search]
+  before_action :set_news_item, only: [:show]
 
   def index
     @news_items = @representative.news_items
   end
-
+  def new_search
+    # This action should render a form for searching articles
+    # It doesn't need to set a representative
+  end
   def show
     # Assuming @news_item is set for individual item
     @news_item = NewsItem.find(params[:id])

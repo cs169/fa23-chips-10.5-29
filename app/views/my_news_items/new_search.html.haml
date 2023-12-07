@@ -1,10 +1,10 @@
 %h1 Search for News Articles
 = form_with url: search_articles_representatives_path, method: :get do |form|
-  .field
-    = form.label :representative_id, 'Select Representative:'
-    = form.collection_select :representative_id, Representative.all, :id, :name, include_blank: true
-  .field
-    = form.label :issue, 'Select Issue:'
-    = form.select :issue, options_for_select(NewsItem::ISSUES), include_blank: true
-  .actions
-    = form.submit 'Search'
+    .field
+        = form.label :representative_id, 'Select Representative:'
+        = form.collection_select :representative_id, Representative.all, :id, :name, include_blank: true
+    .field
+        = form.label :issue, 'Select Issue:'
+        = form.select :issue, issue_options_for_select, include_blank: true
+    .actions
+        = form.submit 'Search'

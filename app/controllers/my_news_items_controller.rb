@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class MyNewsItemsController < SessionController
-  before_action :set_representative
-  before_action :set_representatives_list
+  before_action :set_representative, except: [:new_search, :search_articles]
   before_action :set_news_item, only: %i[edit update destroy]
 
   def new
@@ -36,6 +35,16 @@ class MyNewsItemsController < SessionController
     @news_item.destroy
     redirect_to representative_news_items_path(@representative),
                 notice: 'News was successfully destroyed.'
+  end
+  def new_search
+    # Renders the form for selecting a representative and an issue
+    # Ensure the form submits to the search_articles action
+  end
+  def search_articles
+    # Placeholder logic for Task 2.2
+    # Redirect to a placeholder page or render a simple message
+    flash[:notice] = 'Search functionality will be implemented in Task 2.3'
+    redirect_to root_path
   end
 
   private
