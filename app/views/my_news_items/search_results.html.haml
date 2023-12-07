@@ -1,11 +1,11 @@
 %h1 Articles Search Results
 = form_with url: create_from_selection_representatives_path, method: :post do |form|
-  - @articles.each_with_index do |article, index|
-    .article
-      = form.radio_button :selected_article, index
-      = form.label :selected_article, article.title
-      %p= article.description
-  .actions
-    = form.hidden_field :representative_id, value: params[:representative_id]
-    = form.hidden_field :issue, value: params[:issue]
-    = form.submit 'Create News Item'
+    - @articles.each_with_index do |article, index|
+        .article
+            = form.radio_button :selected_article, index
+            = form.label :selected_article, article.title
+            %p= article.description
+        .actions
+            = form.hidden_field :representative_id, value: params[:representative_id]
+            = form.hidden_field :issue, value: params[:issue]
+            = form.submit 'Create News Item'
