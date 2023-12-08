@@ -1,12 +1,12 @@
 .row.mt-2
-  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    %h1.text-center Add a New News Article
-    %p
-      To add a new news article, first select a Representative and Issue.
-    = link_to 'Search for Articles', new_search_my_news_items_path, class: 'btn btn-primary'
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h1.text-center Add a New News Article
+        %p
+            To add a new news article, first select a Representative and Issue.
+        = link_to 'Search for Articles', new_search_my_news_items_path, class: 'btn btn-primary'
 
 .row.mt-2
-  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-    .clearfix.mt-3
-      .float-right
-        = link_to 'View news articles', representative_news_items_path(@representative), class: 'btn btn-info'
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        .clearfix.mt-3
+            .float-right
+                = link_to 'View news articles', representative_news_items_path(@representative), class: 'btn btn-info'

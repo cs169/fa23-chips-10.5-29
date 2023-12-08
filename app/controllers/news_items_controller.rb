@@ -7,10 +7,12 @@ class NewsItemsController < ApplicationController
   def index
     @news_items = @representative.news_items
   end
+
   def new_search
     # This action should render a form for searching articles
     # It doesn't need to set a representative
   end
+
   def show
     # Assuming @news_item is set for individual item
     @news_item = NewsItem.find(params[:id])
