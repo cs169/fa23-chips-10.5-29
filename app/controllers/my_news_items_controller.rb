@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class MyNewsItemsController < SessionController
-  before_action :set_representative
-  before_action :set_representatives_list
+  before_action :set_representative, except: %i[new_search search_articles]
   before_action :set_news_item, only: %i[edit update destroy]
 
   def new
@@ -36,6 +35,21 @@ class MyNewsItemsController < SessionController
     @news_item.destroy
     redirect_to representative_news_items_path(@representative),
                 notice: 'News was successfully destroyed.'
+  end
+
+  def new_search
+    # Renders the form for selecting a representative and an issue
+    # Ensure the form submits to the search_articles action
+    render :new_search
+  end
+
+  def search_articles
+    @articles = NewsApiService.new(params[:representative_id], params[:issue]).fetch_articles
+    if @articles.blank?
+      redirect_to new_search_my_news_items_path, alert: 'No articles found. Please try again.'
+    else
+      render :search_results
+    end
   end
 
   private
