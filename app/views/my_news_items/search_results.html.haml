@@ -1,11 +1,16 @@
 %h1 Articles Search Results
-= form_with url: create_from_selection_representatives_path, method: :post do |form|
-    - @articles.each_with_index do |article, index|
-        .article
-            = form.radio_button :selected_article, index
-            = form.label :selected_article, article.title
-            %p= article.description
-    .actions
-        = form.hidden_field :representative_id, value: params[:representative_id]
-        = form.hidden_field :issue, value: params[:issue]
-        = form.submit 'Create News Item'
+- p @articles.first # This will print the first article in your server log
+- if @articles.present?
+    = form_with url: create_from_selection_representatives_path, method: :post do |form|
+        - @articles.each_with_index do |article, index|
+            .article.mb-3
+                = form.radio_button :selected_article, index, class: 'mr-2'
+                = form.label :selected_article, article['title']
+                %p= article['description']
+
+        .actions
+            = form.hidden_field :representative_id, value: params[:representative_id]
+            = form.hidden_field :issue, value: params[:issue]
+            = form.submit 'Create News Item', class: 'btn btn-primary mt-3'
+- else
+    %p No articles found for the selected criteria.
