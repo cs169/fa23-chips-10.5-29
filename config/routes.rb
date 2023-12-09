@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/user/profile', to: 'user#profile', as: :user_profile
     get '/my_news_items/search', to: 'my_news_items#new_search', as: 'new_search_my_news_items'
     get '/my_news_items/search_articles', to: 'my_news_items#search_articles', as: 'search_articles_representatives'
+    post '/my_news_items/create_from_selection', to: 'my_news_items#create_from_selection', as: 'create_from_selection_representatives'
     root to: 'map#index', as: 'root'
     get '/state/:state_symbol' => 'map#state', :as => :state_map
     get '/state/:state_symbol/county/:std_fips_code' => 'map#county', :as => :county
@@ -43,6 +44,5 @@ Rails.application.routes.draw do
         get '/representatives/search_articles', to: 'my_news_items#search_articles', as: 'search_articles_representatives'
 
                                                                     end
-
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
 end

@@ -44,7 +44,11 @@ class MyNewsItemsController < SessionController
   end
 
   def search_articles
-    @articles = NewsApiService.new(params[:representative_id], params[:issue]).fetch_articles
+    @representative = Representative.find(params[:representative_id])
+    @issue = params[:issue]
+
+    # Fetch the articles from the News API
+    @articles = NewsApiService.new(@representative, @issue).fetch_articles
     if @articles.blank?
       redirect_to new_search_my_news_items_path, alert: 'No articles found. Please try again.'
     else
