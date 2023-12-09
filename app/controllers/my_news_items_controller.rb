@@ -55,6 +55,19 @@ class MyNewsItemsController < SessionController
     end
   end
 
+  def new_search
+    # Renders the form for selecting a representative and an issue
+    # Ensure the form submits to the search_articles action
+    render :new_search
+  end
+
+  def search_articles
+    # Placeholder logic for Task 2.2
+    # Redirect to a placeholder page or render a simple message
+    flash[:notice] = 'Search functionality will be implemented in Task 2.3'
+    redirect_to root_path
+  end
+
   private
 
   def handle_save(news_item, action)
