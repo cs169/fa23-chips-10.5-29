@@ -42,6 +42,7 @@ Rails.application.routes.draw do
         match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#destroy',
                                                                       via: [:delete]
         get '/representatives/search_articles', to: 'my_news_items#search_articles', as: 'search_articles_representatives'
+
         post 'my_news_items/create_from_selection', to: 'my_news_items#create_from_selection', as: 'create_from_selection_representatives'
                                                                     end
 
