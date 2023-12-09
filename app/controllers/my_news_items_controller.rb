@@ -52,6 +52,26 @@ class MyNewsItemsController < SessionController
     end
   end
 
+  def create_from_selection
+    article = params[:selected_article]
+    @news_item = NewsItem.new(
+      title: article[:title],
+      description: article[:description],
+      link: article[:url],
+      issue: params[:issue],
+      representative_id: params[:representative_id]
+    )
+
+    if @news_item.save
+      redirect_to representative_news_item_path(@representative, @news_item),
+                  notice: 'News item was successfully created.'
+    else
+      flash.now[:error] = 'An error occurred when creating the news item.'
+      render :new
+    end
+  end
+
+
   private
 
   def set_representative
