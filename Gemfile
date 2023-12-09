@@ -42,7 +42,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rubyzip'
 
 gem 'date_validator'
-
+gem 'httparty'
 group :development, :test do
   gem 'axe-core-cucumber'
   gem 'axe-core-rspec'
