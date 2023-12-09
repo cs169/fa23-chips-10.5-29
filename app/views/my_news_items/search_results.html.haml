@@ -1,5 +1,4 @@
 %h1 Articles Search Results
-- p @articles.first # This will print the first article in your server log
 - if @articles.present?
     = form_with url: create_from_selection_representatives_path, method: :post do |form|
         - @articles.each_with_index do |article, index|
