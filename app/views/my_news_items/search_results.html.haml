@@ -5,6 +5,7 @@
             .article.mb-3
                 = form.radio_button :selected_article, index, class: 'mr-2'
                 = form.label :selected_article, article['title']
+                = form.label :selected_article, article['url']
                 %p= article['description']
 
         .actions
